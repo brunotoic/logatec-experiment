@@ -8,7 +8,7 @@ import serial
 import time
 
 # Get the filename
-filename = "node_" + str(sys.arg[1]) + ".txt"
+filename = "node_" + str(sys.argv[1]) + ".txt"
 
 try:
 	APP_DURATION = int(os.environ['APP_DURATION_MIN'])
@@ -37,9 +37,10 @@ s.write(b'ATI\r\n')
 time.sleep(1)
 a = s.read(1000) #flush the whole buffer containing ATI info
 print(a)
-file.write(a)
+
 try: 
     a_str=a.decode("ascii")
+    file.write(str(a_str))
 except:
     print("Cannot decode recieved data")
 print('OK' in a_str)
